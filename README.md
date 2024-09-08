@@ -10,4 +10,22 @@ For development
 flask --app api run
 ```
 
+#### Images:
+
+Sending images with curl:
+
+```bash
+curl -X POST -F "image=@../low-res-image.jpg" localhost:5000/image
+```
+
+The same image can be sent via POSTMAN.
+
+![Image](./Postman_Send_image.png)
+
+Dealing with images in a nutshell:
+
+- The image needs to be converted from bytes to image format.
+- This can be done using the BytesIO library
+- Need to send a response back to client with the image
+- This time we encode it in a base64 format.
 
