@@ -7,6 +7,7 @@
 
 For development
 ```bash
+cd webapi
 flask --app api run
 ```
 
@@ -20,7 +21,7 @@ curl -X POST -F "image=@../low-res-image.jpg" localhost:5000/image
 
 The same image can be sent via POSTMAN.
 
-![Image](./Postman_Send_image.png)
+![Image](./webapi/Postman_Send_image.png)
 
 Dealing with images in a nutshell:
 
