@@ -54,12 +54,8 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E19EC918AF2D47158292ECC636808AA7 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0109FBFAD2A14269A4FBEFDB4B982002 }}
 
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
+      - name: 'Deploy to Azure Web App using gunicorn'
         id: deploy-to-webapp
-        with:
-          app-name: 'hosted-api'
-          slot-name: 'Production'
         run:  |
           cd webapi
           gunicorn -w 4 'api:app'
