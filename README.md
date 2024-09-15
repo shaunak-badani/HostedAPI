@@ -37,4 +37,13 @@ For development:
 - Run `flask --app api run host=0.0.0.0`. 
 - On your client (local computer), go to the following URL:
     `https://<vm_name>-<local_service_port>.<azure_region_of_workspace>.instances.azureml.net`
-    
+    The default port used by the flask application in this scenario is 5000.
+
+Using a WSGI server like gunicorn:
+
+- Ssh into compute instance
+- Run `gunicorn -w 4 'api:app'`
+- On your client, go to the following URL:
+    `https://<vm_name>-<local_service_port>.<azure_region_of_workspace>.instances.azureml.net`
+    The port in this case is 8000, the default port used by gunicorn.
+    Binding to 0.0.0.0 was not needed.
