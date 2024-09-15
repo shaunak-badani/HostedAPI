@@ -22,18 +22,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Create and start virtual environment
-        run: |
-          python -m venv venv
-          pwd
-          source venv/bin/activate
-      
-      - name: Install dependencies
-        run: |
-          cd webapi 
-          pip install -r requirements.txt
-          pip install gunicorn
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
@@ -55,10 +43,21 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E19EC918AF2D47158292ECC636808AA7 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0109FBFAD2A14269A4FBEFDB4B982002 }}
 
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          pwd
+          source venv/bin/activate
+      
+      - name: Install dependencies
+        run: |
+          cd webapi 
+          pip install -r requirements.txt
+          pip install gunicorn
+      
       - name: 'Deploy to Azure Web App using gunicorn'
         id: deploy-to-webapp
         run:  |
-          pwd
           source venv/bin/activate
           gunicorn -w 4 'api:app'
           
