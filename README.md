@@ -29,3 +29,12 @@ Dealing with images in a nutshell:
 - Need to send a response back to client with the image
 - This time we encode it in a base64 format.
 
+### Deploying on azure
+
+For development:
+
+- Ssh into compute instance
+- Run `flask --app api run host=0.0.0.0`. 
+- On your client (local computer), go to the following URL:
+    `https://<vm_name>-<local_service_port>.<azure_region_of_workspace>.instances.azureml.net`
+    
